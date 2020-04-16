@@ -91,10 +91,12 @@ public class LancamentoService {
 			while (rowIterator.hasNext()) {
 				Row row = rowIterator.next();
 				Iterator<Cell> cellIterator = row.cellIterator();
-				
-				if(row.getRowNum() == 0) {
+				 				
+				if(row.getRowNum() == 0) { 
 					continue;
 				}
+				
+				System.out.println(row.getRowNum() + 1);
 				
 				Lancamento lancamento = new Lancamento();
 				lancamentos.add(lancamento);
@@ -103,24 +105,30 @@ public class LancamentoService {
 					Cell cell = cellIterator.next();
 					switch (cell.getColumnIndex()) {
 					case 0:
+						validarInformacao(cell);
 						lancamento.setData(cell.getLocalDateTimeCellValue().toLocalDate());
 						break;
 					case 1:
+						validarInformacao(cell);
 						Responsavel responsavel = buscarResponsavelPorNome(cell.getStringCellValue());
 						lancamento.setResponsavel(responsavel); 
 						break;
 					case 2: 
+						validarInformacao(cell);
 						lancamento.setDescricao(cell.getStringCellValue());
 						break;
 					case 3:
+						validarInformacao(cell);
 						Categoria categoria = buscarCategoriaPorDescricao(cell.getStringCellValue());
 						lancamento.setCategoria(categoria);
 						break;
 					case 4:
+						validarInformacao(cell);
 						Banco banco = buscarBancoPorNome(cell.getStringCellValue());
 						lancamento.setBanco(banco);
 						break;
 					case 5:
+						validarInformacao(cell);
 						lancamento.setValor(BigDecimal.valueOf(cell.getNumericCellValue()));
 					default:
 						break;
@@ -150,7 +158,7 @@ public class LancamentoService {
 	}
 	
 	private Categoria buscarCategoriaPorDescricao(String descricao) {
-		Optional<Categoria> categoria = categoriaRepository.findByDescricao(descricao);
+		Optional<Categoria> categoria = categoriaRepository.findByDescricaoAndCategoriaNotNullAndSubCategoriaNotNullAndCategoriaCodigo(descricao, Long.valueOf(2));
 		
 		if (!categoria.isPresent()) {
 			throw new CategoriaNaoExisteException();
@@ -168,4 +176,15 @@ public class LancamentoService {
 		
 		return banco.get();
 	}
+	
+	private Cell validarInformacao(Cell cell) {
+		
+		if(cell.equals(null)) {
+			System.out.println("Informação vazio");
+			throw new CategoriaNaoExisteException();
+		}
+		
+		return cell;
+	}
+	
 }

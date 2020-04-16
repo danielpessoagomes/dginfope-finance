@@ -12,3 +12,4 @@ INSERT INTO banco (nome, saldo, data_saldo) value ('Caixa Econômica Federal', 0
 INSERT INTO banco (nome, saldo, data_saldo) value ('Itaú', 0.00, '2020-04-01');
 INSERT INTO banco (nome, saldo, data_saldo) value ('Santander', 0.00, '2020-04-01');
 INSERT INTO banco (nome, saldo, data_saldo) value ('Caixa Geral', 0.00, '2020-04-01');
+INSERT INTO banco (nome, saldo, data_saldo) value ('Banco do Brasil PJ', 0.00, '2020-04-01');

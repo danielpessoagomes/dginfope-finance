@@ -42,6 +42,7 @@ public class LancamentoResource {
 		return lancamentoRepository.filtrar(lancamentoFilter, pageable);
 	}
 	
+	
 	@PostMapping
 	public ResponseEntity<Lancamento> criar(@Valid @RequestBody Lancamento lancamento, HttpServletResponse response){
 		Lancamento lancamentoSalvo = lancamentoService.salvar(lancamento);
@@ -65,7 +66,7 @@ public class LancamentoResource {
 		return ResponseEntity.ok(lancamentoSalvo);
 	}
 	
-	@PostMapping("/importar")
+	@PostMapping("/importar-despesa")
 	public void importar(@RequestParam("file") MultipartFile file) throws IOException {
 		lancamentoService.upload(file);
 	}
