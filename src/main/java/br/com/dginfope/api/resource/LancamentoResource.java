@@ -68,7 +68,7 @@ public class LancamentoResource {
 	
 	@PostMapping("/importar-despesa")
 	public void importar(@RequestParam("file") MultipartFile file) throws IOException {
-		lancamentoService.upload(file);
+		lancamentoService.uploadDespesas(file);
 	}
 
 }

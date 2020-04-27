@@ -19,13 +19,13 @@ public class Categoria {
 	private Long codigo;
 
 	@ManyToOne
-	@JoinColumn(name = "codigo_categoria", referencedColumnName = "codigo", updatable = false)
-	private Categoria categoria;
+	@JoinColumn(name = "codigo_classificacao", referencedColumnName = "codigo", updatable = false)
+	private Categoria classificacao;
 
-	@JsonIgnoreProperties("categoria")
+	@JsonIgnoreProperties("classificacao")
 	@ManyToOne
-	@JoinColumn(name = "codigo_sub_categoria", referencedColumnName = "codigo", updatable = false)
-	private Categoria subCategoria;
+	@JoinColumn(name = "codigo_sub_classificacao", referencedColumnName = "codigo", updatable = false)
+	private Categoria subClassificacao;
 
 	private String descricao;
 
@@ -37,20 +37,20 @@ public class Categoria {
 		this.codigo = codigo;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
+	public Categoria getClassificacao() {
+		return classificacao;
 	}
 
-	public Categoria getSubCategoria() {
-		return subCategoria;
+	public void setClassificacao(Categoria classificacao) {
+		this.classificacao = classificacao;
 	}
 
-	public void setSubCategoria(Categoria subCategoria) {
-		this.subCategoria = subCategoria;
+	public Categoria getSubClassificacao() {
+		return subClassificacao;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public void setSubClassificacao(Categoria subClassificacao) {
+		this.subClassificacao = subClassificacao;
 	}
 
 	public String getDescricao() {

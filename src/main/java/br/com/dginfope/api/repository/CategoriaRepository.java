@@ -9,6 +9,7 @@ import br.com.dginfope.api.repository.categoria.CategoriaRepositoryQuery;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>, CategoriaRepositoryQuery {
 
-	Optional<Categoria> findByDescricaoAndCategoriaNotNullAndSubCategoriaNotNullAndCategoriaCodigo(String descricao, Long codigo);
+	Optional<Categoria> findByDescricaoAndClassificacaoNotNullAndSubClassificacaoNotNullAndClassificacaoCodigo(
+			String descricao, Long valueOf);
 
 }

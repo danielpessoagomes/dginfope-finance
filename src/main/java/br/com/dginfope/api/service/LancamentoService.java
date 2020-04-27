@@ -75,7 +75,7 @@ public class LancamentoService {
 		return lancamentoSalvo.get();
 	}
 
-	public void upload(MultipartFile file) throws IOException {
+	public void uploadDespesas(MultipartFile file) throws IOException {
 		List<Lancamento> lancamentos = new ArrayList<Lancamento>();
 		
 		try {
@@ -119,7 +119,7 @@ public class LancamentoService {
 						break;
 					case 3:
 						validarInformacao(cell);
-						Categoria categoria = buscarCategoriaPorDescricao(cell.getStringCellValue());
+						Categoria categoria = buscarCategoriaPorDescricao(cell.getStringCellValue(), Long.valueOf(2));
 						lancamento.setCategoria(categoria);
 						break;
 					case 4:
@@ -146,7 +146,7 @@ public class LancamentoService {
 			e.printStackTrace();
 		}		
 	}
-	
+		
 	private Responsavel buscarResponsavelPorNome(String nome) {
 		Optional<Responsavel> responsavel = responsavelRepository.findByNome(nome);
 		
@@ -157,8 +157,8 @@ public class LancamentoService {
 		return responsavel.get();
 	}
 	
-	private Categoria buscarCategoriaPorDescricao(String descricao) {
-		Optional<Categoria> categoria = categoriaRepository.findByDescricaoAndCategoriaNotNullAndSubCategoriaNotNullAndCategoriaCodigo(descricao, Long.valueOf(2));
+	private Categoria buscarCategoriaPorDescricao(String descricao, Long codigo) {
+		Optional<Categoria> categoria = categoriaRepository.findByDescricaoAndClassificacaoNotNullAndSubClassificacaoNotNullAndClassificacaoCodigo(descricao, codigo);
 		
 		if (!categoria.isPresent()) {
 			throw new CategoriaNaoExisteException();
