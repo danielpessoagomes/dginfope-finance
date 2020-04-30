@@ -12,6 +12,8 @@ import br.com.dginfope.api.repository.CategoriaRepository;
 
 @Service
 public class CategoriaService {
+	
+	
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
