@@ -14,6 +14,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.util.StringUtils;
 
 import br.com.dginfope.api.model.Categoria;
 import br.com.dginfope.api.model.Categoria_;
@@ -48,6 +49,11 @@ public class CategoriaRepositoryImpl implements CategoriaRepositoryQuery{
 		
 		if (categoriaFilter.getSubcategoria() != null) {
 			predicates.add(builder.equal(root.get(Categoria_.subCategoria).get(Categoria_.codigo), categoriaFilter.getSubcategoria()));
+		}
+		
+		if (!StringUtils.isEmpty(categoriaFilter.getDescricao())) {
+			predicates.add(builder.like(
+					builder.lower(root.get(Categoria_.descricao)), "%" + categoriaFilter.getDescricao().toLowerCase() + "%"));
 		}
 		
 		return predicates.toArray(new Predicate[predicates.size()]);
