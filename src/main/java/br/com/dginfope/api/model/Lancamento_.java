@@ -1,6 +1,5 @@
 package br.com.dginfope.api.model;
 
-import br.com.dginfope.api.model.enumeration.TipoLancamento;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import javax.annotation.Generated;
@@ -12,7 +11,6 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Lancamento_ {
 
 	public static volatile SingularAttribute<Lancamento, Long> codigo;
-	public static volatile SingularAttribute<Lancamento, TipoLancamento> tipoLancamento;
 	public static volatile SingularAttribute<Lancamento, LocalDate> data;
 	public static volatile SingularAttribute<Lancamento, Categoria> categoria;
 	public static volatile SingularAttribute<Lancamento, BigDecimal> valor;
@@ -21,7 +19,6 @@ public abstract class Lancamento_ {
 	public static volatile SingularAttribute<Lancamento, String> descricao;
 
 	public static final String CODIGO = "codigo";
-	public static final String TIPO_LANCAMENTO = "tipoLancamento";
 	public static final String DATA = "data";
 	public static final String CATEGORIA = "categoria";
 	public static final String VALOR = "valor";

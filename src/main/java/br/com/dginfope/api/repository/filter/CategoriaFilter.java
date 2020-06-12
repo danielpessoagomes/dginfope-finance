@@ -1,25 +1,16 @@
 package br.com.dginfope.api.repository.filter;
 
 public class CategoriaFilter {
-	
-	private Long categoria;
-	private Long subcategoria;
+
+	private Long classificacao;
 	private String descricao;
 
-	public Long getCategoria() {
-		return categoria;
+	public Long getClassificacao() {
+		return classificacao;
 	}
 
-	public void setCategoria(Long categoria) {
-		this.categoria = categoria;
-	}
-
-	public Long getSubcategoria() {
-		return subcategoria;
-	}
-
-	public void setSubcategoria(Long subcategoria) {
-		this.subcategoria = subcategoria;
+	public void setClassificacao(Long classificacao) {
+		this.classificacao = classificacao;
 	}
 
 	public String getDescricao() {
@@ -29,7 +20,5 @@ public class CategoriaFilter {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	
 
 }

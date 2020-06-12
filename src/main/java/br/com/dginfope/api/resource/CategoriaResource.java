@@ -38,7 +38,7 @@ public class CategoriaResource{
 	public Page<Categoria> listar(CategoriaFilter categoriaFilter, Pageable pageable) {
 		return categoriaRepository.filtrar(categoriaFilter, pageable);
 	}
-	
+		
 	@PostMapping
 	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response){
 		Categoria categoriaSalvo = categoriaService.salvar(categoria);

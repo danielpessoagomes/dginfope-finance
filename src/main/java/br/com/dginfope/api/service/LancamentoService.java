@@ -29,7 +29,7 @@ import br.com.dginfope.api.model.Banco;
 import br.com.dginfope.api.model.Categoria;
 import br.com.dginfope.api.model.Lancamento;
 import br.com.dginfope.api.model.Responsavel;
-import br.com.dginfope.api.model.enumeration.TipoLancamento;
+import br.com.dginfope.api.model.enumeration.TipoCategoria;
 import br.com.dginfope.api.repository.BancoRepository;
 import br.com.dginfope.api.repository.CategoriaRepository;
 import br.com.dginfope.api.repository.LancamentoRepository;
@@ -42,14 +42,14 @@ public class LancamentoService {
 	private LancamentoRepository lancamentoRepository;
 	
 	@Autowired
-	private ResponsavelRepository responsavelRepository;
-	
-	@Autowired
 	private BancoRepository bancoRepository;
 	
 	@Autowired
+	private ResponsavelRepository responsavelRepository;
+	
+	@Autowired
 	private CategoriaRepository categoriaRepository;
-
+		
 	public Lancamento salvar(Lancamento lancamento) {
 		return lancamentoRepository.save(lancamento);
 	}
@@ -119,7 +119,7 @@ public class LancamentoService {
 						break;
 					case 3:
 						validarInformacao(cell);
-						Categoria categoria = buscarCategoriaPorDescricao(cell.getStringCellValue(), Long.valueOf(2));
+						Categoria categoria = buscarCategoriaPorDescricao(cell.getStringCellValue());
 						lancamento.setCategoria(categoria);
 						break;
 					case 4:
@@ -133,7 +133,6 @@ public class LancamentoService {
 					default:
 						break;
 					}
-					lancamento.setTipoLancamento(TipoLancamento.DESPESA);
 				}
 			}
 			
@@ -157,8 +156,8 @@ public class LancamentoService {
 		return responsavel.get();
 	}
 	
-	private Categoria buscarCategoriaPorDescricao(String descricao, Long codigo) {
-		Optional<Categoria> categoria = categoriaRepository.findByDescricaoAndClassificacaoNotNullAndSubClassificacaoNotNullAndClassificacaoCodigo(descricao, codigo);
+	private Categoria buscarCategoriaPorDescricao(String descricao) {
+		Optional<Categoria> categoria = categoriaRepository.findByDescricaoAndTipoCategoriaAndClassificacaoNotNull(descricao, TipoCategoria.DESPESAS);
 		
 		if (!categoria.isPresent()) {
 			throw new CategoriaNaoExisteException();

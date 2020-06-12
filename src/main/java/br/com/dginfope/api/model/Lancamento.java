@@ -5,16 +5,12 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import br.com.dginfope.api.model.enumeration.TipoLancamento;
 
 @Entity
 @Table(name = "lancamento")
@@ -24,15 +20,14 @@ public class Lancamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "tipo_lancamento")
-	private TipoLancamento tipoLancamento;
-
+	@Column(name = "data")
 	private LocalDate data;
 
 	@ManyToOne
 	@JoinColumn(name = "codigo_responsavel")
 	private Responsavel responsavel;
+
+	@Column(name = "descricao")
 	private String descricao;
 
 	@ManyToOne
@@ -43,6 +38,7 @@ public class Lancamento {
 	@JoinColumn(name = "codigo_banco")
 	private Banco banco;
 
+	@Column(name = "valor")
 	private BigDecimal valor;
 
 	public Long getCodigo() {
@@ -99,14 +95,6 @@ public class Lancamento {
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
-	}
-
-	public TipoLancamento getTipoLancamento() {
-		return tipoLancamento;
-	}
-
-	public void setTipoLancamento(TipoLancamento tipoLancamento) {
-		this.tipoLancamento = tipoLancamento;
 	}
 
 	@Override

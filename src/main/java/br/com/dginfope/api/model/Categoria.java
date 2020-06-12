@@ -1,6 +1,9 @@
 package br.com.dginfope.api.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -8,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import br.com.dginfope.api.model.enumeration.TipoCategoria;
 
 @Entity
 @Table(name = "categoria")
@@ -22,11 +25,11 @@ public class Categoria {
 	@JoinColumn(name = "codigo_classificacao", referencedColumnName = "codigo", updatable = false)
 	private Categoria classificacao;
 
-	@JsonIgnoreProperties("classificacao")
-	@ManyToOne
-	@JoinColumn(name = "codigo_sub_classificacao", referencedColumnName = "codigo", updatable = false)
-	private Categoria subClassificacao;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo_categoria")
+	private TipoCategoria tipoCategoria;
 
+	@Column(name = "descricao")
 	private String descricao;
 
 	public Long getCodigo() {
@@ -45,12 +48,12 @@ public class Categoria {
 		this.classificacao = classificacao;
 	}
 
-	public Categoria getSubClassificacao() {
-		return subClassificacao;
+	public TipoCategoria getTipoCategoria() {
+		return tipoCategoria;
 	}
 
-	public void setSubClassificacao(Categoria subClassificacao) {
-		this.subClassificacao = subClassificacao;
+	public void setTipoCategoria(TipoCategoria tipoCategoria) {
+		this.tipoCategoria = tipoCategoria;
 	}
 
 	public String getDescricao() {

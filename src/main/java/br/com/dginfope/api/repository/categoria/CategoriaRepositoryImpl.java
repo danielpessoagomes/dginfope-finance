@@ -43,12 +43,12 @@ public class CategoriaRepositoryImpl implements CategoriaRepositoryQuery{
 		
 		List<Predicate> predicates = new ArrayList<Predicate>();
 		
-		if (categoriaFilter.getCategoria() != null) {
-			predicates.add(builder.equal(root.get(Categoria_.categoria).get(Categoria_.codigo), categoriaFilter.getCategoria()));
-		}
+//		predicates.add(
+//				builder.isNotNull(root.get(Categoria_.classificacao)));
 		
-		if (categoriaFilter.getSubcategoria() != null) {
-			predicates.add(builder.equal(root.get(Categoria_.subCategoria).get(Categoria_.codigo), categoriaFilter.getSubcategoria()));
+		if(categoriaFilter.getClassificacao() != null) {
+			predicates.add(
+					builder.equal(root.get(Categoria_.classificacao).get(Categoria_.codigo), categoriaFilter.getClassificacao()));
 		}
 		
 		if (!StringUtils.isEmpty(categoriaFilter.getDescricao())) {
