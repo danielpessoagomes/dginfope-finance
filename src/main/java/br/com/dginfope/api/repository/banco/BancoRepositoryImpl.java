@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -42,8 +43,8 @@ public class BancoRepositoryImpl implements BancoRepositoryQuery{
 		
 		List<Predicate> predicates = new ArrayList<Predicate>();
 		
-		if (bancoFilter.getNome() != null) {
-			predicates.add(builder.equal(root.get(Banco_.nome), bancoFilter.getNome()));
+		if (!StringUtils.isEmpty(bancoFilter.getNome())) {
+			predicates.add(builder.like(root.get(Banco_.nome), "%" + bancoFilter.getNome() + "%"));
 		}
 	
 		
