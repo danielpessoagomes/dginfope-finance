@@ -12,7 +12,7 @@ import br.com.dginfope.api.config.property.DginfopeProperty;
 public class DginfopeFinanceApplication {
 
 	private static ApplicationContext APPLICATION_CONTEXT;
-	
+		
 	public static void main(String[] args) {
 		APPLICATION_CONTEXT = SpringApplication.run(DginfopeFinanceApplication.class, args);
 	}
