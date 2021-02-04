@@ -70,6 +70,8 @@ INSERT INTO categoria (codigo_classificacao, tipo_categoria, descricao) value (1
 INSERT INTO categoria (codigo_classificacao, tipo_categoria, descricao) value (13,'DESPESAS','Cartório');
 INSERT INTO categoria (codigo_classificacao, tipo_categoria, descricao) value (13,'DESPESAS','Software e Consultoria');
 INSERT INTO categoria (codigo_classificacao, tipo_categoria, descricao) value (13,'DESPESAS','Registro domínio');
+INSERT INTO categoria (codigo_classificacao, tipo_categoria, descricao) value (13,'DESPESAS','TV Por assinatura');
+INSERT INTO categoria (codigo_classificacao, tipo_categoria, descricao) value (13,'DESPESAS','Hospedagem domínio');
 
 INSERT INTO categoria (codigo_classificacao, tipo_categoria, descricao) value (14,'DESPESAS','Conta Garantida');
 INSERT INTO categoria (codigo_classificacao, tipo_categoria, descricao) value (14,'DESPESAS','Pacote de Serviços');

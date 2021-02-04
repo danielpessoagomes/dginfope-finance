@@ -1,5 +1,6 @@
 package br.com.dginfope.api.resource;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.dginfope.api.model.Categoria;
+import br.com.dginfope.api.model.enumeration.TipoCategoria;
 import br.com.dginfope.api.repository.CategoriaRepository;
 import br.com.dginfope.api.repository.filter.CategoriaFilter;
 import br.com.dginfope.api.service.CategoriaService;
@@ -37,6 +40,16 @@ public class CategoriaResource{
 	@GetMapping
 	public Page<Categoria> listar(CategoriaFilter categoriaFilter, Pageable pageable) {
 		return categoriaRepository.filtrar(categoriaFilter, pageable);
+	}
+	
+	@GetMapping("/todos")
+	public List<Categoria> todos(){
+		return categoriaRepository.findAll();
+	}
+	
+	@GetMapping("/tipo-categoria")
+	public List<Categoria> listarTipoCategoria(@RequestParam String tipo){
+		return categoriaRepository.findByTipoCategoria(TipoCategoria.valueOf(tipo));
 	}
 		
 	@PostMapping
