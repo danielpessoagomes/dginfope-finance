@@ -51,6 +51,11 @@ public class CategoriaResource{
 	public List<Categoria> listarTipoCategoria(@RequestParam String tipo){
 		return categoriaRepository.findByTipoCategoria(TipoCategoria.valueOf(tipo));
 	}
+	
+	@GetMapping("/classificacao")
+	public List<Categoria> listarTipoCategoria(){
+		return categoriaRepository.findByClassificacaoIsNull();
+	}
 		
 	@PostMapping
 	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response){

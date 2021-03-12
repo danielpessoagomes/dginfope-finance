@@ -13,6 +13,7 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long>, Cat
 	
 	Optional<Categoria> findByDescricaoAndTipoCategoriaAndClassificacaoNotNull(String descricao, TipoCategoria tipoCategoria);
 	List<Categoria> findByTipoCategoria(TipoCategoria tipoCategoria);
+	List<Categoria> findByClassificacaoIsNull();
 	
 	
 }

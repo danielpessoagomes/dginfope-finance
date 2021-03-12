@@ -1,5 +1,9 @@
 package br.com.dginfope.api;
 
+import java.util.TimeZone;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -12,6 +16,11 @@ import br.com.dginfope.api.config.property.DginfopeProperty;
 public class DginfopeFinanceApplication {
 
 	private static ApplicationContext APPLICATION_CONTEXT;
+	
+    @PostConstruct
+    public void init(){
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+    }
 		
 	public static void main(String[] args) {
 		APPLICATION_CONTEXT = SpringApplication.run(DginfopeFinanceApplication.class, args);
